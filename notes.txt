@@ -1,0 +1,4 @@
+vim.fn.termopen([[powershell -Command "$proxy = New-Object System.Net.WebProxy('http://proxy.jpmchase.net:10443'); $proxy.Credentials =
+  [System.Net.CredentialCache]::DefaultCredentials; [System.Net.WebRequest]::DefaultWebProxy = $proxy; Invoke-WebRequest -Uri
+  'https://raw.githubusercontent.com/officialrajdeepsingh/nerd-fonts-installer/main/install.ps1' -OutFile 'install.ps1'; echo 47 | &
+  .\install.ps1"]])

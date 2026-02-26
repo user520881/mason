@@ -4,11 +4,14 @@ local fonts_dir = vim.fn.expand('~') .. '/AppData/Local/Microsoft/Windows/Fonts'
 local fonts_already_installed = vim.fn.glob(fonts_dir .. '/JetBrainsMono*.ttf') ~= ''
 
 if not fonts_already_installed then
-  vim.fn.termopen(
-    'powershell -ExecutionPolicy Bypass -Command ' ..
-    '"curl --progress-bar -o install.ps1 https://raw.githubusercontent.com/officialrajdeepsingh/nerd-fonts-installer/main/install.ps1; ' ..
-    'echo 47 | powershell -ExecutionPolicy Bypass -File .\\install.ps1"'
-  )
+  --vim.fn.termopen(
+  --  'powershell -ExecutionPolicy Bypass -Command ' ..
+  --  '"curl --progress-bar -o install.ps1 https://raw.githubusercontent.com/officialrajdeepsingh/nerd-fonts-installer/main/install.ps1; ' ..
+  --  'echo 47 | powershell -ExecutionPolicy Bypass -File .\\install.ps1"'
+  --)
+  vim.fn.system("powershell -Command \"Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/officialrajdeepsingh/nerd-fonts-installer/main/install.ps1' -OutFile 'install.ps1'\"")
+  vim.cmd([[terminal powershell -Command "echo 47 | powershell -File .\install.ps1"]])
+
 
   vim.api.nvim_create_autocmd('TermClose', {
     once = true,
